@@ -1,0 +1,21 @@
+{
+    "name": "artem/bitrix",
+    "description": "learn bitrix framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Rogov",
+            "email": "artemrogov281@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "v4.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omg\\": "local/php_interface/lib/omg",
+            "Project\\": "local/php_interface/lib/project"
+        }
+    }
+}
