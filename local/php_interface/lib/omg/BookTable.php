@@ -3,6 +3,9 @@
 namespace Omg;
 
 use Bitrix\Main\Entity;
+use Bitrix\Main\ORM\Fields\IntegerField;
+use Bitrix\Main\ORM\Fields\Relations\Reference;
+use Bitrix\Main\ORM\Query\Join;
 
 class BookTable extends Entity\DataManager{
 
@@ -32,7 +35,16 @@ class BookTable extends Entity\DataManager{
                 'required' => true,
             )),
             new Entity\StringField('UF_BOOK_NAME'),
-            new Entity\IntegerField('UF_CATALOG_ID')
+            new Entity\IntegerField('UF_CATALOG_ID'),
+
+            (new Reference(
+                'CATALOG_TABLE_NG',
+                CatalogBookTable::class,
+                Join::on('this.UF_CATALOG_ID', 'ref.ID')
+            ))
+                ->configureJoinType('inner')
+
+
         );
     }
 

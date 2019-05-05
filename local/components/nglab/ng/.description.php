@@ -2,12 +2,12 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arComponentDescription = array(
-    "NAME" => "Первый учебный компонент с поддержкой языковых констант",
-    "DESCRIPTION" => "Первый учебный компонент - Языковые константы",
+    "NAME" => "вывести книги каталога",
+    "DESCRIPTION" => "книги каталога",
     "SORT" => 10,
     "CACHE_PATH" => "Y",
     "PATH" => array(
-        "ID" => "first_param",
+        "ID" => "ng_lab",
     ),
     "COMPLEX" => "N",
 );

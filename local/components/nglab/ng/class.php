@@ -1,9 +1,35 @@
-<?
+<?php
 
+namespace Nglab\Ng;
+
+use Bitrix\Main\Engine\Contract\Controllerable;
+use CBitrixComponent;
+use Omg\CatalogBookTable;
+use Bitrix\Main\Context;
 
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-class Param extends CBitrixComponent {
+
+class Ng extends CBitrixComponent implements Controllerable{
+
+
+
+    public function configureActions()
+    {
+        return [
+            'sendBookData' => [ // Ajax-метод
+                'prefilters' => [],
+            ],
+        ];
+    }
+
+    // Ajax-методы должны быть с постфиксом Action
+    public function sendBookDataAction($param1)
+    {
+
+       return $this->getCatalogBooksArray($param1);
+
+    }
 
     public function onPrepareComponentParams($arParams)
     {
@@ -11,35 +37,43 @@ class Param extends CBitrixComponent {
         $result = array(
             "CACHE_TYPE" => $arParams["CACHE_TYPE"],
             "CACHE_TIME" => isset($arParams["CACHE_TIME"]) ? $arParams["CACHE_TIME"]: 36000000,
-            "X" => intval($arParams["X"]),
-            "Z"=> intval($arParams["Z"]),
         );
 
         return $result;
     }
 
-    public function myMethod($x){
+    public function getCatalogBooksArray($id){
 
-        return $x * $x;
+       $catalogTable = CatalogBookTable::getByPrimary($id,[
+            'select'=>['*','BOOKS']
+        ])->fetchObject();
+
+         $arrCatalogResult = function() use($catalogTable){
+
+             $result[] = 'Каталог: '.$catalogTable->get("UF_NAME_CATALOG");
+
+            foreach($catalogTable->getBooks() as $book){
+
+                $result[] = $book->get("UF_BOOK_NAME").' '.$book->get("UF_AUTHOR");
+            }
+
+            return $result;
+        };
+
+        return $arrCatalogResult();
 
     }
 
-    public function mySum($a,$b){
-        $res = $a + $b;
-        return $res;
-    }
 
-    public function executeComponent(){
-
+    public function executeComponent()
+    {
 
         if($this->startResultCache()){
 
-            $this->arResult["RESULT_SUM"] = $this->mySum($this->arParams["X"], $this->arParams["Z"]);
             $this->includeComponentTemplate();
 
         }
 
-        return $this->arResult["RESULT_SUM"];
     }
 
 }
