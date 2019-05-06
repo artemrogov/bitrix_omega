@@ -51,3 +51,33 @@ ng_catalog_book | CREATE TABLE `ng_catalog_book` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci 
 ```
+
+В для локальной разработки создал бокс контейнер на базе [homestead](https://laravel.com/docs/5.8/homestead)
+только поменял сменил сервер с nginx на apache СУБД - mariadb.
+
+Homestead.yml
+
+```---
+   ip: "192.168.10.12"
+   memory: 2048
+   cpus: 2
+   provider: virtualbox
+   mariadb: true
+   authorize: ~/.ssh/id_rsa.pub
+   
+   keys:
+       - ~/.ssh/id_rsa
+   folders:
+       - map: ~/bx_projects
+         to: /home/vagrant/code
+   
+   sites:
+       - map: bitrix.test
+         to: /home/vagrant/code/bitrix
+         php: "7.1"
+         type: "apache"
+   
+   databases:
+       - bitrix_db
+
+```
