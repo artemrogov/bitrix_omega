@@ -11,38 +11,8 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
     </form>
 </div>
 <div id="result"></div>
+<?php
+    $this->addExternalJS("/local/components/nglab/ng/templates/.default/ajax_action.js");
+?>
 
-<script>
-    $(document).ready(function(){
-          $("#result").hide();
-
-          $("#formFilter").on("submit",function(e){
-
-              BX.ajax.runComponentAction('nglab:ng',
-                  'sendBookData', { // Вызывается без постфикса Action
-                      mode: 'class',
-                      data: {
-                          param1:$("#filter_id").val(),
-                      } // ключи объекта data соответствуют параметрам метода
-                  }).then(function(response) {
-
-                      if (response.status === 'success') {
-
-                      $("#result").show();
-                      $("#result").html("");
-
-                      for (var i = 0; response.data.length > i; i++){
-
-                          $("#result").append("<p class='ajx'>"+response.data[i]+"</p>");
-                      }
-
-                  }
-              });
-
-              e.preventDefault();
-
-          });
-
-});
-</script>
 
