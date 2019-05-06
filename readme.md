@@ -15,10 +15,10 @@
 Структура проекта
 --
 
-- Сам компонент находится /local/components/nglab/ng
+- Сам компонент находится `/local/components/nglab/ng`
 
- - ORM сущности проекта: /local/php_interface/lib/omg
- - в init.php - автозагрузка классов проекта
+ - ORM сущности проекта: `/local/php_interface/lib/omg`
+ - в `/local/init.php `- автозагрузка классов проекта
 
 В проекте использовал автозагрузку PSR-4 
 
