@@ -1,14 +1,19 @@
+/**
+ * Вызывает метод компонента sendBookData(без постфикса Action)
+ * отправляет post запрос, если ID каталога существует
+ * возращает массив книг каталога.
+ */
 BX.ready(function(){
     $("#result").hide();
 
     $("#formFilter").on("submit",function(e){
 
         BX.ajax.runComponentAction('nglab:ng',
-            'sendBookData', { // Вызывается без постфикса Action
+            'sendBookData', {
                 mode: 'class',
                 data: {
-                    param1:$("#filter_id").val(),
-                } // ключи объекта data соответствуют параметрам метода
+                    param1:$("#filter_id").val(), // ключи объекта data соответствуют параметрам метода
+                }
             }).then(function(response) {
 
             if (response.status === 'success') {

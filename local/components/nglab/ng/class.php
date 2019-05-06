@@ -13,7 +13,11 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 class Ng extends CBitrixComponent implements Controllerable{
 
 
-
+    /**
+     * Сбрасываем фильтры по-умолчанию (ActionFilter\Authentication и ActionFilter\HttpMethod)
+     * Предустановленные фильтры находятся в папке /bitrix/modules/main/lib/engine/actionfilter/
+     * @return array
+     */
     public function configureActions()
     {
         return [
@@ -23,7 +27,14 @@ class Ng extends CBitrixComponent implements Controllerable{
         ];
     }
 
-    // Ajax-методы должны быть с постфиксом Action
+    /**
+     * Обработка Ajax-метода (должны быть с постфиксом Action)
+     * @param $param1
+     * @return array
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \Bitrix\Main\ObjectPropertyException
+     * @throws \Bitrix\Main\SystemException
+     */
     public function sendBookDataAction($param1)
     {
 
@@ -41,6 +52,16 @@ class Ng extends CBitrixComponent implements Controllerable{
 
         return $result;
     }
+
+    /**
+     * Формирует массив - книг которые содаержатся в каталоге,
+     * фильтруем по ID каталога и формируем результирующий массив
+     * @param $id
+     * @return array
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \Bitrix\Main\ObjectPropertyException
+     * @throws \Bitrix\Main\SystemException
+     */
 
     public function getCatalogBooksArray($id){
 
@@ -64,7 +85,9 @@ class Ng extends CBitrixComponent implements Controllerable{
 
     }
 
-
+    /**
+     * @return mixed|void
+     */
     public function executeComponent()
     {
 

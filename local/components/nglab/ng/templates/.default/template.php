@@ -1,7 +1,15 @@
 <?php
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+/**
+ * Шаблон комопнента получения списка книг
+ */
 ?>
-<?$this->addExternalCss("/bitrix/css/main/bootstrap_v4/bootstrap.css");?>
+<?
+/**
+ * Подключает bootstrap 4 из каробки:
+ */
+$this->addExternalCss("/bitrix/css/main/bootstrap_v4/bootstrap.css");
+?>
 <div class="container">
     <div class="row">
     <div class="col-12">
@@ -16,12 +24,16 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
         </form>
     </div>
         <div class="col-12 mt-5">
-            <div id="result" class="alert alert-success" role="alert"></div>
+            <div id="result" class="alert alert-success" role="alert">
+            </div>
         </div>
     </div>
 </div>
 
 <?php
+/**
+ * Подключить обработчик AJAX
+ */
     $this->addExternalJS("/local/components/nglab/ng/templates/.default/ajax_action.js");
 ?>
 
