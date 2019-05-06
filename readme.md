@@ -30,3 +30,24 @@
       }``
 ````
 
+структура таблиц highload блоков
+--
+
+таблица каталога книг
+```sql
+ng_catalog_book | CREATE TABLE `ng_catalog_book` (
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `UF_NAME_CATALOG` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
+```
+таблица с книгами:
+```sql
+ ng_books | CREATE TABLE `ng_books` (
+  `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `UF_AUTHOR` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UF_BOOK_NAME` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UF_CATALOG_ID` int(18) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci 
+```
