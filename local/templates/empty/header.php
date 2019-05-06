@@ -6,6 +6,7 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 <html>
 	<head>
 		<?$APPLICATION->ShowHead();?>
+
         <?CJSCore::Init(array('ajax', 'json', 'ls', 'session', 'jquery', 'popup', 'pull'));?>
 		<title><?$APPLICATION->ShowTitle();?></title>
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /> 	

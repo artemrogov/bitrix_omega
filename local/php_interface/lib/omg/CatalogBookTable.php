@@ -9,12 +9,18 @@ use Bitrix\Main\ORM\Fields\Relations\OneToMany;
 class CatalogBookTable extends Entity\DataManager
 {
 
-
+    /**
+     * @return string
+     */
     public static function getTableName()
     {
         return 'ng_catalog_book';
     }
 
+    /**
+     * @return array
+     * @throws \Bitrix\Main\SystemException
+     */
     public static function getMap()
     {
         return array(

@@ -13,7 +13,8 @@ BX.ready(function(){
 
             if (response.status === 'success') {
 
-                $("#result").show();
+                $("#result").fadeIn('slow');
+
                 $("#result").html("");
 
                 for (var i = 0; response.data.length > i; i++){
